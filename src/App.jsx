@@ -1,13 +1,27 @@
 import "./App.css";
-import { Button } from "./components/ui/button";
+import { Route, Routes } from "react-router-dom";
+import CheckAuth from "./components/common/CheckAuth";
+import AuthLayout from "./components/auth/layout";
+import Login from "./pages/auth/login";
+import Register from "./pages/auth/register";
 
 function App() {
+  const isAuthenticated = true;
+
   return (
-    <div className="">
-      <h1>
-        <Button className="bg-red-500">Button</Button>
-      </h1>
-    </div>
+    <Routes>
+      <Route
+        path="/auth"
+        element={
+          <CheckAuth isAuthenticated={isAuthenticated}>
+            <AuthLayout />
+          </CheckAuth>
+        }
+      >
+        <Route path="register" element={<Register />} />
+        <Route path="login" element={<Login />} />
+      </Route>
+    </Routes>
   );
 }
 
