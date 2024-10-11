@@ -4,7 +4,7 @@ const AuthLayout = () => {
   return (
     <>
       {/* the ui for the auth layout should be above here */}
-      <div>Hello That is the auth layout</div>
+      <div>Header</div>
 
       {/* the routes of the auth layout should be below here */}
       <div>

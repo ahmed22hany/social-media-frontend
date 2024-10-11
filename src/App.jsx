@@ -7,6 +7,9 @@ import Register from "./pages/auth/register";
 
 function App() {
   // this must be a real auth check and get it from the backend we have created
+  // also we need to get the user if they are logged in
+  // we need to have it with both ways in redux store or local storage
+
   const isAuthenticated = true;
 
   return (
