@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 
 const AuthLayout = () => {
   return (
-    <>
+    <div className="container">
       {/* the ui for the auth layout should be above here */}
       <div>Header</div>
 
@@ -10,7 +10,7 @@ const AuthLayout = () => {
       <div>
         <Outlet />
       </div>
-    </>
+    </div>
   );
 };
 

@@ -26,7 +26,7 @@ const CheckAuth = ({ isAuthenticated, children }) => {
     ) {
       return navigate("/auth/login");
     }
-  }, [isAuthenticated, location.pathname, navigate]);
+  }, [isAuthenticated]);
 
   return <div>{children}</div>;
 };
