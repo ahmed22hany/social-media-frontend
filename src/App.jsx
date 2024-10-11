@@ -6,6 +6,7 @@ import Login from "./pages/auth/login";
 import Register from "./pages/auth/register";
 
 function App() {
+  // this must be a real auth check and get it from the backend we have created
   const isAuthenticated = true;
 
   return (
