@@ -4,16 +4,22 @@ import axios from "axios";
 axios.defaults.baseURL = "http://localhost:5001";
 
 export const loginUser = async (credentials) => {
-  const response = await axios.post("/api/auth/login", credentials);
+  const response = await axios.post(
+    "http://localhost:5001/api/auth/login",
+    credentials
+  );
   console.log(response.data);
   return response.data;
 };
 
 export const getAuthUser = async (token) => {
-  const response = await axios.get("/api/auth/getAuthUser", {
-    headers: {
-      token,
-    },
-  });
+  const response = await axios.get(
+    "http://localhost:5001/api/auth/getAuthUser",
+    {
+      headers: {
+        token,
+      },
+    }
+  );
   return response.data;
 };

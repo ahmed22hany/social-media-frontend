@@ -12,7 +12,7 @@ const Login = () => {
     e.preventDefault();
     const userData = await login({ email, password });
     if (userData) {
-      navigate("/");
+      navigate("/home");
     }
   };
 
