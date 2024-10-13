@@ -1,8 +1,11 @@
 // function that checks every possible auth route and returns the correct one
 /* eslint-disable react/prop-types */
 import { useLocation, Navigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
-const CheckAuth = ({ isAuthenticated, children }) => {
+const CheckAuth = ({ children }) => {
+  const { isAuthenticated } = useContext(AuthContext);
   const location = useLocation();
 
   // here we need to check if the user is authenticated
@@ -23,6 +26,7 @@ const CheckAuth = ({ isAuthenticated, children }) => {
   // Authenticated users should be redirected away from auth pages
   if (isAuthenticated) {
     if (
+      location.pathname.includes("/auth") ||
       location.pathname.includes("/auth/login") ||
       location.pathname.includes("/auth/register")
     ) {
