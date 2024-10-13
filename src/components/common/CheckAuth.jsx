@@ -1,12 +1,14 @@
 // function that checks every possible auth route and returns the correct one
 /* eslint-disable react/prop-types */
 import { useLocation, Navigate } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+
+import { useAuth } from "../../context/AuthContext";
 
 const CheckAuth = ({ children }) => {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, loading } = useAuth();
   const location = useLocation();
+
+  if (loading) return;
 
   // here we need to check if the user is authenticated
   // if not we need to redirect them to the login page
