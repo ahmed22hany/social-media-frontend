@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuthActions } from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-
+import fetchAdminData from "../../api/fetchAdminData"
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,7 +13,9 @@ const Login = () => {
     const userData = await login({ email, password });
     if (userData) {
       navigate("/home");
+
     }
+    fetchAdminData()
   };
 
   return (
