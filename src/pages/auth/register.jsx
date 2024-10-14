@@ -16,6 +16,7 @@ const Register = () => {
       const response = await register({ email, password, username });
       if (response.success) {
         localStorage.setItem("token", response.token);
+        console.log(response);
         navigate("/auth/login");
       } else {
         setError(response.data.message); // Show error message
