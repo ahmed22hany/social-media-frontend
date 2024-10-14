@@ -6,9 +6,12 @@ import Register from "./pages/auth/register";
 // Import the provider
 import HomeLayout from "./components/home-view/layout";
 import Home from "./pages/home/Home";
+import ProfileLayout from "./components/admin-view/layout";
+import AdminProfile from "./pages/profile/AdminProfile";
 
 function App() {
   return (
+    <>
     <Routes>
       <Route
         path="/auth"
@@ -30,7 +33,18 @@ function App() {
         }
       />
       <Route path="home" element={<Home />} />
+      <Route path="/profile" element={
+        <CheckAuth>
+          <ProfileLayout />
+        </CheckAuth>
+      }
+      >
+      <Route path="admin" element={<AdminProfile />} />
+      </Route>
+      
     </Routes>
+  
+    </>
   );
 }
 
