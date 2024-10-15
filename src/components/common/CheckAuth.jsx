@@ -20,9 +20,8 @@ const CheckAuth = ({ children }) => {
         navigate("/auth/login");
       }
     } else {
-      // Redirect authenticated users to home if they're on login or register pages
       if (
-        location.pathname.includes("/auth/login") ||
+        (isAuthenticated && location.pathname.includes("/auth/login")) ||
         location.pathname.includes("/auth/register")
       ) {
         navigate("/home");
@@ -30,7 +29,7 @@ const CheckAuth = ({ children }) => {
     }
   }, [isAuthenticated, loading, location.pathname, navigate]);
 
-  return <div>{children}</div>; // Render the children if no navigation is triggered
+  return <div>{children}</div>;
 };
 
 export default CheckAuth;
