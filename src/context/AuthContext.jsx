@@ -2,12 +2,14 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getAuthUser } from "../api/auth";
 import { loginUser } from "../api/auth";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -17,6 +19,7 @@ export const AuthProvider = ({ children }) => {
         try {
           const data = await getAuthUser(token);
           setIsAuthenticated(data.ok);
+          navigate("/home");
         } catch (error) {
           console.error("Error checking authentication status:", error);
           setIsAuthenticated(false);
@@ -28,7 +31,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     checkAuth();
-  }, []);
+  }, [navigate]);
 
   // Add the login function
   const login = async (email, password) => {

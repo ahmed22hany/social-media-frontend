@@ -24,7 +24,10 @@ const CheckAuth = ({ children }) => {
         (isAuthenticated && location.pathname.includes("/auth/login")) ||
         location.pathname.includes("/auth/register")
       ) {
-        navigate("/home");
+        const token = localStorage.getItem("token");
+        if (token) {
+          navigate("/home");
+        }
       }
     }
   }, [isAuthenticated, loading, location.pathname, navigate]);
