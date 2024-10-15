@@ -1,45 +1,32 @@
 import { useState } from "react";
-import { useAuthActions } from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
-import fetchAdminData from "../../api/fetchAdminData"
+import { useAuth } from "../../context/AuthContext"; // Import the useAuth hook
+
 const Login = () => {
+  const { login } = useAuth(); // Destructure login from useAuth
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login, error } = useAuthActions();
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userData = await login({ email, password });
-    if (userData) {
-      navigate("/home");
-
-    }
-    fetchAdminData()
+    await login(email, password); // Call the login function
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          required
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          required
-        />
-        <button type="submit">Login</button>
-      </form>
-      {error && <p>{error}</p>}
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Email"
+      />
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password"
+      />
+      <button type="submit">Login</button>
+    </form>
   );
 };
 
