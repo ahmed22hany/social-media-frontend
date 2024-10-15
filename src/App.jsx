@@ -28,7 +28,7 @@ function App() {
           <Route path="" element={<Navigate to="/auth/login" />} />
         </Route>
         <Route
-          path="/home"
+          path="/"
           element={
             <CheckAuth>
               <HomeLayout />
