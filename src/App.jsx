@@ -3,6 +3,7 @@ import CheckAuth from "./components/common/CheckAuth";
 import AuthLayout from "./components/auth/layout";
 import Login from "./pages/auth/login";
 import Register from "./pages/auth/register";
+import Activity from "./pages/activity/activity";
 // Import the provider
 import HomeLayout from "./components/home-view/layout";
 import Home from "./pages/home/Home";
@@ -16,8 +17,7 @@ function App() {
           <CheckAuth>
             <AuthLayout />
           </CheckAuth>
-        }
-      >
+        }>
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
       </Route>
@@ -30,6 +30,7 @@ function App() {
         }
       />
       <Route path="home" element={<Home />} />
+      <Route path="/activity" element={<Activity />} />
     </Routes>
   );
 }
