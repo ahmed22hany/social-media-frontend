@@ -26,7 +26,7 @@ const CheckAuth = ({ children }) => {
       ) {
         const token = localStorage.getItem("token");
         if (token) {
-          navigate("/home");
+          navigate("/profile/admin");
         }
       }
     }
