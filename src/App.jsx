@@ -3,6 +3,7 @@ import CheckAuth from "./components/common/CheckAuth";
 import AuthLayout from "./components/auth/layout";
 import Login from "./pages/auth/login";
 import Register from "./pages/auth/register";
+import Activity from "./pages/activity/activity";
 // Import the provider
 import HomeLayout from "./components/home-view/layout";
 import Home from "./pages/home/Home";
@@ -48,6 +49,8 @@ function App() {
         >
           <Route path="admin" element={<AdminProfile />} />
         </Route>
+
+      <Route path="/activity" element={<Activity />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
