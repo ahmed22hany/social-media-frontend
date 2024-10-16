@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
         try {
           const data = await getAuthUser(token);
           setIsAuthenticated(data.ok);
-          navigate("/home");
+          navigate("/profile/admin");
         } catch (error) {
           console.error("Error checking authentication status:", error);
           setIsAuthenticated(false);

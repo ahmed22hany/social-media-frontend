@@ -2,7 +2,6 @@ import axios from "axios";
 
      const fetchAdminData=async()=>{
         const token=localStorage.getItem("token")
-        console.log(token)
         try{
             const AdminResponse= await axios.get('http://localhost:5001/api/auth/getAuthUser', {
                 headers: {
