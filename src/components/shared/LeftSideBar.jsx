@@ -1,5 +1,52 @@
-const LeftSideBar = () => {
-  return <div>LeftSideBar</div>;
+import { useNavigate } from "react-router-dom";
+
+import { NavLink } from "react-router-dom";
+import { sidebarLinks } from "../../constants";
+import { useAuth } from "@/context/AuthContext";
+
+const LeftSidebar = () => {
+  const { signOut } = useAuth();
+  const navigate = useNavigate();
+
+  // Function to handle sign out and redirect
+  const handleSignOut = async () => {
+    try {
+      await signOut({ redirectUrl: "/auth/logout" }); // Use Clerk's redirect option
+      localStorage.removeItem("token");
+    } catch (error) {
+      console.error("Failed to sign out:", error);
+      // In case of an error, fallback to manual navigation
+      navigate("/auth/login");
+    }
+  };
+
+  return (
+    <section className="custom-scrollbar leftsidebar">
+      <div className="flex w-full flex-1 flex-col gap-6 px-6">
+        {sidebarLinks.map((link) => {
+          return (
+            <NavLink
+              to={link.route}
+              key={link.label}
+              className={({ isActive }) =>
+                `leftsidebar_link ${isActive ? "bg-primary-500" : ""}`
+              }
+            >
+              <img src={link.imgURL} alt={link.label} width={24} height={24} />
+              <p className="text-light-1 max-lg:hidden">{link.label}</p>
+            </NavLink>
+          );
+        })}
+      </div>
+
+      <div className="mt-10 px-6">
+        <div className="flex cursor-pointer gap-4 p-4" onClick={handleSignOut}>
+          <img src="/assets/logout.svg" alt="logout" width={24} height={24} />
+          <p className="text-light-2 max-lg:hidden">Logout</p>
+        </div>
+      </div>
+    </section>
+  );
 };
 
-export default LeftSideBar;
+export default LeftSidebar;

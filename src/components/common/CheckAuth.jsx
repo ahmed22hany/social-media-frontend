@@ -26,6 +26,13 @@ const CheckAuth = ({ children }) => {
       ) {
         const token = localStorage.getItem("token");
         if (token) {
+          navigate("/home");
+        }
+      }
+
+      if (isAuthenticated && location.pathname.includes("/profile")) {
+        const token = localStorage.getItem("token");
+        if (token) {
           navigate("/profile/admin");
         }
       }

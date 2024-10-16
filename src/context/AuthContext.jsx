@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
           const data = await getAuthUser(token);
           setIsAuthenticated(data.ok);
           console.log(data);
-          navigate("/profile/admin");
+          // navigate("/profile/admin");
         } catch (error) {
           console.error("Error checking authentication status:", error);
           setIsAuthenticated(false);
