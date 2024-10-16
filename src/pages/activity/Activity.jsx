@@ -1,4 +1,3 @@
-import React from "react";
 import ActivityCell from "../../components/shared/ActivityCell";
 
 const somePosts = [
@@ -35,7 +34,6 @@ const somePosts = [
 ];
 
 const Activity = () => {
-
   return (
     <div className="flex flex-col gap-y-4 md:items-center md:justify-center p-4">
       <h1 className="font-black text-2xl">Activity</h1>

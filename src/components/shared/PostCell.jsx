@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 import { SlOptionsVertical } from "react-icons/sl";
 import { PiChatCenteredTextFill } from "react-icons/pi";
 import { IoMdHeart } from "react-icons/io";

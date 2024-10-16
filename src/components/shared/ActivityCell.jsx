@@ -1,4 +1,6 @@
-import React from "react";
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+
 import { RiArrowRightSLine } from "react-icons/ri";
 
 const ActivityCell = ({ cellImage, activityText, userName, postID }) => {
