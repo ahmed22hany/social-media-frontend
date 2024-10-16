@@ -158,7 +158,7 @@ const AdminProfile = () => {
               }
               placeholder="Add a reply"
             />
-            {/* eslint-disable-next-line no-undef */}
+
             <button
               onClick={() => {
                 handleAddReply(post, addReply.text, adminData);
