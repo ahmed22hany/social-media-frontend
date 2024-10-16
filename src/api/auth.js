@@ -4,11 +4,25 @@ import axios from "axios";
 axios.defaults.baseURL = "http://localhost:5001";
 
 export const loginUser = async (credentials) => {
+  try {
+    const response = await axios.post(
+      "http://localhost:5001/api/auth/login",
+      credentials
+    );
+    localStorage.setItem("token", response.data.token);
+    return response.data;
+  } catch (error) {
+    console.error("API Error:", error);
+    throw error;
+  }
+};
+
+export const registerUser = async (credentials) => {
   const response = await axios.post(
-    "http://localhost:5001/api/auth/login",
+    "http://localhost:5001/api/auth/register",
     credentials
   );
-  console.log(response.data);
+  localStorage.setItem("token", response.data.token);
   return response.data;
 };
 

@@ -1,40 +1,36 @@
-// function that checks every possible auth route and returns the correct one
-/* eslint-disable react/prop-types */
-import { useLocation, Navigate } from "react-router-dom";
-
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { useEffect } from "react";
 
+// eslint-disable-next-line react/prop-types
 const CheckAuth = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
 
-  if (loading) return;
+  useEffect(() => {
+    if (loading) return; // Don't do anything while loading
 
-  // here we need to check if the user is authenticated
-  // if not we need to redirect them to the login page
-  // if they are authenticated we need to return them to signup page then we need to redirect them to login page
-
-  if (!isAuthenticated) {
-    // Redirect to register if the current path isn't register or login
-    if (
-      location.pathname !== "/auth" &&
-      location.pathname !== "/auth/register" &&
-      location.pathname !== "/auth/login"
-    ) {
-      return <Navigate to="/auth/register" />;
+    if (!isAuthenticated) {
+      // Redirect unauthenticated users to login or register
+      if (
+        location.pathname !== "/auth/register" &&
+        location.pathname !== "/auth/login"
+      ) {
+        navigate("/auth/login");
+      }
+    } else {
+      if (
+        (isAuthenticated && location.pathname.includes("/auth/login")) ||
+        location.pathname.includes("/auth/register")
+      ) {
+        const token = localStorage.getItem("token");
+        if (token) {
+          navigate("/home");
+        }
+      }
     }
-  }
-
-  // Authenticated users should be redirected away from auth pages
-  if (isAuthenticated) {
-    if (
-      location.pathname.includes("/auth") ||
-      location.pathname.includes("/auth/login") ||
-      location.pathname.includes("/auth/register")
-    ) {
-      return <Navigate to="/" />;
-    }
-  }
+  }, [isAuthenticated, loading, location.pathname, navigate]);
 
   return <div>{children}</div>;
 };
