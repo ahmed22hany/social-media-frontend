@@ -9,6 +9,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [id, setId] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,6 +21,10 @@ export const AuthProvider = ({ children }) => {
           const data = await getAuthUser(token);
           setIsAuthenticated(data.ok);
           console.log(data);
+          setId(data.user._id);
+          console.log(data.user._id);
+          // navigate(`/home/${id}`);
+
           // navigate("/profile/admin");
         } catch (error) {
           console.error("Error checking authentication status:", error);
@@ -32,7 +37,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     checkAuth();
-  }, [navigate]);
+  }, [navigate, id]);
 
   // Add the login function
   const login = async (email, password) => {
@@ -56,7 +61,7 @@ export const AuthProvider = ({ children }) => {
   };
   // state that holds if the user is looged in or not
   return (
-    <AuthContext.Provider value={{ isAuthenticated, loading, login }}>
+    <AuthContext.Provider value={{ isAuthenticated, loading, login,navigate, id }}>
       {children}
     </AuthContext.Provider>
   );
