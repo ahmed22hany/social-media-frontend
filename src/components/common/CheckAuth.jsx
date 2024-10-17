@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 // eslint-disable-next-line react/prop-types
 const CheckAuth = ({ children }) => {
-  const { isAuthenticated, loading } = useAuth();
+  const { isAuthenticated, loading, setId, id } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ const CheckAuth = ({ children }) => {
       ) {
         const token = localStorage.getItem("token");
         if (token) {
-          navigate("/home");
+          navigate(`/home/${id}`);
         }
       }
 
@@ -37,7 +37,7 @@ const CheckAuth = ({ children }) => {
         }
       }
     }
-  }, [isAuthenticated, loading, location.pathname, navigate]);
+  }, [isAuthenticated, loading, location.pathname, navigate, setId, id]);
 
   return <div>{children}</div>;
 };
