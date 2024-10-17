@@ -33,8 +33,11 @@ function App() {
             <CheckAuth>
               <HomeLayout />
             </CheckAuth>
-          }>
+          }
+        >
+            
           <Route path="home" element={<Home />} />
+        <Route path="home/:id" element={<Home />} />
         </Route>
 
         <Route
