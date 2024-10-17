@@ -3,17 +3,18 @@ import ActivityCell from "../../components/shared/ActivityCell";
 import fetchAdminData from "../../api/fetchAdminData";
 import { useAuth } from "@/context/AuthContext";
 import LoadingSkeleton from "@/components/ui/LoadingSkeleton";
+import { useNavigate } from "react-router-dom";
 
 const Activity = () => {
   const [notificationState, setNotificationState] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       if (!isAuthenticated) {
-        console.log("user not authenticated");
-        //navigate to the login page
+        navigate("/auth/login");
         return;
       }
 
@@ -28,7 +29,7 @@ const Activity = () => {
     };
 
     fetchData();
-  }, [isAuthenticated]);
+  }, [isAuthenticated, navigate]);
 
   return (
     <div className="flex flex-col gap-y-4 md:items-center md:justify-center p-4">

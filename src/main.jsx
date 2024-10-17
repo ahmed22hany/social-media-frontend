@@ -18,7 +18,7 @@ createRoot(document.getElementById("root")).render(
             <LeftSidebar />
 
             <section className="main-container">
-              <div className="w-full max-w-4xl text-white">
+              <div className="w-full max-w-4xl">
                 <App />
               </div>
             </section>

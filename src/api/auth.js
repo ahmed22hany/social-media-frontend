@@ -10,6 +10,7 @@ export const loginUser = async (credentials) => {
       credentials
     );
     localStorage.setItem("token", response.data.token);
+    console.log(response);
     return response.data;
   } catch (error) {
     console.error("API Error:", error);
