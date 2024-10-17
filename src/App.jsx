@@ -1,4 +1,4 @@
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import CheckAuth from "./components/common/CheckAuth";
 import AuthLayout from "./components/auth/layout";
 import Login from "./pages/auth/login";
@@ -22,10 +22,10 @@ function App() {
             <CheckAuth>
               <AuthLayout />
             </CheckAuth>
-          }>
+          }
+        >
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
-          <Route path="" element={<Navigate to="/auth/login" />} />
         </Route>
         <Route
           path="/"
@@ -35,9 +35,8 @@ function App() {
             </CheckAuth>
           }
         >
-            
           <Route path="home" element={<Home />} />
-        <Route path="home/:id" element={<Home />} />
+          <Route path="home/:id" element={<Home />} />
         </Route>
 
         <Route
@@ -46,7 +45,8 @@ function App() {
             <CheckAuth>
               <ProfileLayout />
             </CheckAuth>
-          }>
+          }
+        >
           <Route path="admin" element={<AdminProfile />} />
         </Route>
 

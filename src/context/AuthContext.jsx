@@ -20,12 +20,7 @@ export const AuthProvider = ({ children }) => {
         try {
           const data = await getAuthUser(token);
           setIsAuthenticated(data.ok);
-          console.log(data);
           setId(data.user._id);
-          console.log(data.user._id);
-          // navigate(`/home/${id}`);
-
-          // navigate("/profile/admin");
         } catch (error) {
           console.error("Error checking authentication status:", error);
           setIsAuthenticated(false);
@@ -61,7 +56,9 @@ export const AuthProvider = ({ children }) => {
   };
   // state that holds if the user is looged in or not
   return (
-    <AuthContext.Provider value={{ isAuthenticated, loading, login,navigate, id }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, loading, login, navigate, id }}
+    >
       {children}
     </AuthContext.Provider>
   );
