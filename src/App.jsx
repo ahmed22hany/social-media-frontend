@@ -10,10 +10,11 @@ import Home from "./pages/home/Home";
 import ProfileLayout from "./components/admin-view/layout";
 import AdminProfile from "./pages/profile/AdminProfile";
 import NotFound from "./pages/not-found";
+import { ChakraProvider } from "@chakra-ui/react";
 
 function App() {
   return (
-    <div>
+    <ChakraProvider>
       <Routes>
         <Route
           path="/auth"
@@ -21,11 +22,9 @@ function App() {
             <CheckAuth>
               <AuthLayout />
             </CheckAuth>
-          }
-        >
+          }>
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
-
           <Route path="" element={<Navigate to="/auth/login" />} />
         </Route>
         <Route
@@ -34,8 +33,7 @@ function App() {
             <CheckAuth>
               <HomeLayout />
             </CheckAuth>
-          }
-        >
+          }>
           <Route path="home" element={<Home />} />
         </Route>
 
@@ -45,16 +43,15 @@ function App() {
             <CheckAuth>
               <ProfileLayout />
             </CheckAuth>
-          }
-        >
+          }>
           <Route path="admin" element={<AdminProfile />} />
         </Route>
 
-      <Route path="/activity" element={<Activity />} />
+        <Route path="/activity" element={<Activity />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </div>
+    </ChakraProvider>
   );
 }
 
