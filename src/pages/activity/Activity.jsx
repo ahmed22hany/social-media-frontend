@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ActivityCell from "../../components/shared/ActivityCell";
 import fetchAdminData from "../../api/fetchAdminData";
 import { useAuth } from "@/context/AuthContext";

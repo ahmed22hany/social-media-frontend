@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import fetchAdminData from "@/api/fetchAdminData";
 import { useAuth } from "../../context/AuthContext";
+import Loading from "../../components/common/Loading";
 
 const AdminProfile = () => {
   const [adminData, setAdminData] = useState({});
@@ -106,7 +107,7 @@ const AdminProfile = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (

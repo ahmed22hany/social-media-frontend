@@ -3,19 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { sidebarLinks } from "../../constants";
 import { useAuth } from "@/context/AuthContext";
+import { logoutUser } from "@/api/auth";
 
 const LeftSidebar = () => {
-  const { signOut } = useAuth();
+  const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
-
-  // Function to handle sign out and redirect
-  const handleSignOut = async () => {
-    try {
-      await signOut({ redirectUrl: "/auth/logout" }); // Use Clerk's redirect option
-      localStorage.removeItem("token");
-    } catch (error) {
-      console.error("Failed to sign out:", error);
-      // In case of an error, fallback to manual navigation
+  const handleLogout = async () => {
+    if (isAuthenticated) {
+      await logoutUser();
       navigate("/auth/login");
     }
   };
@@ -40,7 +35,7 @@ const LeftSidebar = () => {
       </div>
 
       <div className="mt-10 px-6">
-        <div className="flex cursor-pointer gap-4 p-4" onClick={handleSignOut}>
+        <div className="flex cursor-pointer gap-4 p-4" onClick={handleLogout}>
           <img src="/assets/logout.svg" alt="logout" width={24} height={24} />
           <p className="text-light-2 max-lg:hidden">Logout</p>
         </div>
