@@ -26,6 +26,21 @@ export const registerUser = async (credentials) => {
   return response.data;
 };
 
+export const logoutUser = async () => {
+  const response = await axios.post(
+    "http://localhost:5001/api/auth/logout",
+    null,
+    {
+      headers: {
+        token: localStorage.getItem("token"),
+      },
+    }
+  );
+  localStorage.removeItem("token");
+  console.log("User logged out");
+  return response.data;
+};
+
 export const getAuthUser = async (token) => {
   const response = await axios.get(
     "http://localhost:5001/api/auth/getAuthUser",
