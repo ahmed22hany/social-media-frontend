@@ -12,6 +12,7 @@ const PostCell = ({
   commentsNumber,
 }) => {
   const [liked, setLiked] = useState(false);
+ 
 
   const toggleLike = () => {
     setLiked((prevLiked) => !prevLiked);

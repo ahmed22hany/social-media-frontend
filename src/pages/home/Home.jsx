@@ -77,6 +77,7 @@ import axios from "axios";
 import { useAuth } from "../../context/AuthContext"; // Import AuthContext
 import { useParams, useNavigate } from "react-router-dom"; // Import navigation hooks
 
+
 const Feed = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -93,7 +94,14 @@ const Feed = () => {
         return; // Wait until auth state is ready
       }
 
-      console.log("Authentication state:", isAuthenticated, "User ID:", userId, "Param ID:", paramId);
+      console.log(
+        "Authentication state:",
+        isAuthenticated,
+        "User ID:",
+        userId,
+        "Param ID:",
+        paramId
+      );
 
       // Handle authentication and ID matching
       if (!isAuthenticated || paramId !== userId) {
@@ -116,6 +124,18 @@ const Feed = () => {
         setLoading(false); // Ensure loading stops
       }
     };
+
+    // const likepost = async (postId, liked) => {
+    //   try {
+    //     await axios.post(`http://localhost:5001/api/post/${postId}/like`, {
+    //       liked,
+    //     });
+    //     // Optionally update local state or refetch posts
+    //   } catch (error) {
+    //     console.error("Error liking post:", error);
+    //     // Optionally handle the error (e.g., show a notification)
+    //   }
+    // };
 
     fetchPosts();
   }, [isAuthenticated, userId, paramId, authLoading, navigate]);
@@ -165,10 +185,17 @@ const Feed = () => {
       <ul className="space-y-6">
         {posts.map((post) => (
           <li key={post._id} className="bg-dark-2 text-white shadow rounded-lg p-4 relative">
+
+          <li
+            key={post._id}
+            className="bg-dark-2  text-white shadow rounded-lg p-4 relative"
+          >
+
             <div className="flex justify-between">
               <div>
                 <h3 className="text-xl font-bold">{post.postedBy.name}</h3>
                 <p className="text-lg mt-2">{post.text}</p>
+
                 <p className="text-sm text-gray-500">Likes: {post.likes.length}</p>
               </div>
               <div className="flex flex-col items-end">
@@ -180,13 +207,59 @@ const Feed = () => {
               </div>
             </div>
 
+
+                <p className="text-sm text-white">Likes: {post.likes.length}</p>
+              </div>
+              
+              
+              <h3 className="user-name">userName</h3>
+
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "12px",
+                  padding: "10px",
+                  backgroundColor: "#f9f9f9",
+                  borderRadius: "12px",
+                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                  direction: "rtl",
+                  width: "fit-content",
+                  transition: "transform 0.2s ease-in-out",
+                }}
+                className="user-photo-container"
+              >
+                
+                <img
+                  src="https://placehold.co/600x400@3x.png"
+                  alt="user photo"
+                  style={{
+                    width: "50px",
+                    height: "50px",
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                    border: "2px solid #4A90E2",
+                    transition: "box-shadow 0.3s ease-in-out",
+                  }}
+                  className="user-photo"
+                />
+              </div>
+              
+            </div>
+
             {/* Replies */}
             <div className="mt-4">
               <h4 className="font-semibold">Replies</h4>
               <ul className="space-y-2 mt-2 rounded-lg border border-gray-200 p-2">
                 {post.replies.length > 0 ? (
                   post.replies.map((reply) => (
+
                     <li key={reply._id} className="bg-dark-4 text-white p-2 rounded-lg">
+                    <li
+                      key={reply._id}
+                      className="bg-dark-4 p-2 rounded-lg text-white"
+                    >
+
                       <p>{reply.text}</p>
                     </li>
                   ))
