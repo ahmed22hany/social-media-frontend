@@ -174,9 +174,9 @@ const AdminProfile = () => {
             {/* Replies */}
             <div className="mt-6 border-t border-gray-300 pt-4">
               <h4 className="font-semibold">Replies</h4>
-              <ul className="space-y-2 mt-2">
+              <ul className="space-y-2 mt-2 rounded-lg border border-gray-200">
                 {post.replies.map((reply) => (
-                  <li key={reply._id} className="bg-dark-2 p-2 rounded-lg border border-gray-200">
+                  <li key={reply._id} className="bg-dark-4 p-2">
                     <p >{reply.text}</p>
                     <div className="absolute top-2 right-2 flex space-x-2">
                     </div>
