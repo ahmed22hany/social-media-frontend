@@ -164,7 +164,7 @@ const Feed = () => {
       <h2 className="text-3xl font-bold text-center mb-6">Your Feed</h2>
       <ul className="space-y-6">
         {posts.map((post) => (
-          <li key={post._id} className="bg-dark-2 shadow rounded-lg p-4 relative">
+          <li key={post._id} className="bg-dark-2 text-white shadow rounded-lg p-4 relative">
             <div className="flex justify-between">
               <div>
                 <h3 className="text-xl font-bold">{post.postedBy.name}</h3>
@@ -186,7 +186,7 @@ const Feed = () => {
               <ul className="space-y-2 mt-2 rounded-lg border border-gray-200 p-2">
                 {post.replies.length > 0 ? (
                   post.replies.map((reply) => (
-                    <li key={reply._id} className="bg-dark-4 p-2 rounded-lg">
+                    <li key={reply._id} className="bg-dark-4 text-white p-2 rounded-lg">
                       <p>{reply.text}</p>
                     </li>
                   ))
